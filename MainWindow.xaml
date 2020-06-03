@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MOS_Management.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" WindowStyle="None" Activated="Window_Activated" FontSize="14">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,87 +36,289 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="stackpanelGauche" Grid.Row="1" Grid.Column="0" Grid.RowSpan="10" Background="LightGray"  >
-            <Button x:Name="btnCode" Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}">Codes</Button>
+            <Button x:Name="btnCode" Click="BtnLateralGauche_Click" ></Button>
 
-            <Button x:Name="btnIdentifiant"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}">Identifiants</Button>
-            <Button x:Name="btnMos"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Allergies</Button>
-            <Button x:Name="btnCcam"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Traitements</Button>
-            <Button x:Name="btnDevice"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Consultations</Button>
-            <Button x:Name="btnCda"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Biologie</Button>
-            <Button x:Name="btnCim"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Documents</Button>
+            <Button x:Name="btnIdentifiant"  Click="BtnLateralGauche_Click" ></Button>
+            <Button x:Name="btnMos"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Allergies</Button>
+            <Button x:Name="btnCcam"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Traitements</Button>
+            <Button x:Name="btnDevice"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Consultations</Button>
+            <Button x:Name="btnCda"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Biologie</Button>
+            <Button x:Name="btnCim"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Documents</Button>
 
-            <Button x:Name="btnRim"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Nouveau-né</Button>
-            <Button x:Name="btnSnomed"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Délivrance</Button>
-            <Button x:Name="btnLoinc"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Suites de couches</Button>
-            <Button x:Name="btnFhir"  Click="BtnLateralGauche_Click" Style="{DynamicResource boutonStackPanelGauche}" Visibility="Hidden">Synthése</Button>
+            <Button x:Name="btnRim"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Nouveau-né</Button>
+            <Button x:Name="btnSnomed"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Délivrance</Button>
+            <Button x:Name="btnLoinc"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Suites de couches</Button>
+            <Button x:Name="btnFhir"  Click="BtnLateralGauche_Click"  Visibility="Hidden">Synthése</Button>
         </StackPanel>
-        <StackPanel x:Name="stackpanelHaut" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12"  Orientation="Horizontal" Background="LightGray" FlowDirection="LeftToRight" VerticalAlignment="Stretch" >
-            <Label Name="labelTitre" Margin="150,0,150,0" FontSize="31" FontWeight="SemiBold" VerticalContentAlignment="Center" IsManipulationEnabled="True" >M.O.S</Label>
+        <StackPanel x:Name="stackpanelHaut" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12"  Orientation="Horizontal" Background="#2e7d32" FlowDirection="LeftToRight" VerticalAlignment="Stretch" >
+            <Label Name="labelTitre" Margin="150,0,150,0" FontSize="31" FontWeight="SemiBold" VerticalContentAlignment="Center" IsManipulationEnabled="True" Foreground="#CCF7F1F1" >M.O.S</Label>
         </StackPanel>
         <StackPanel x:Name="stackpanelBas" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="12" Orientation="Horizontal" Background="LightGray" FlowDirection="RightToLeft">
             <Button x:Name="btnQuitter" VerticalAlignment="Center" Margin="25,3,0,3" MinHeight="30" MinWidth="90" IsManipulationEnabled="True" Click="BtnClose_Click" >Quitter</Button>
+            <Button x:Name="btnValider" VerticalAlignment="Center" Margin="25,3,0,3" MinHeight="30" MinWidth="90" IsManipulationEnabled="True" Click="BtnValider_Click" >Valider</Button>
         </StackPanel>
-        <Grid x:Name="mainGrid" Grid.Row="1" Grid.Column="1" Grid.RowSpan="10" Grid.ColumnSpan="11">
-            <Grid x:Name="gridCode" Visibility="Visible">
+        <Grid x:Name="mainGrid" Grid.Row="1" Grid.Column="1" Grid.RowSpan="10" Grid.ColumnSpan="11"  >
+            <Grid x:Name="gridCode" Visibility="Visible" Background="#60ad5e" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                   
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    
                 </Grid.ColumnDefinitions>
-            </Grid>
-            <Grid x:Name="gridIdentifiant"  Visibility="Hidden">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                <TabControl x:Name="tabControlCode"  Margin="0" BorderThickness="1" BorderBrush="Black" SelectionChanged="TabItem_Selected">
+                    <TabItem Name="tabItemAgenceCode" IsSelected="True"  >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" Margin="10,15" >Agence :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"  >
+                                <ComboBox x:Name="comboBoxAgenceCode_0" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="AgenceId" DisplayMemberPath="Label"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,15" >Id : </Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxAgenceCodeId" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  >
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="10,15" >Acronyme :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxAgenceCodeAcronyme" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="10,15">Nom de l'Agence :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxAgenceCodeLable" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabItemNomenclature"  >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" Margin="10,15" >Agence :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"  >
+                                <ComboBox x:Name="comboBoxAgenceCode_1" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="AgenceId" DisplayMemberPath="Label"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,15" >Nom :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxNomenclatureNom" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  >
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="10,15" >Version :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxNomenclatureVersion" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="10,15">URI :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxNomenclatureUri" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                        </Grid>
+                        
+                    </TabItem>
+                    <TabItem Name="tabItemCode" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" Margin="10,15" >Nomenclature :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"  >
+                                <ComboBox x:Name="comboBoxNomenclatureCode" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="NomenclatureId" DisplayMemberPath="Nom"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,15" >Code :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxCode" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"  >
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="10,15" >Affichage :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3">
+                                <TextBox x:Name="textboxAffichage" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="10,15">Langue :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3">
+                                <ComboBox x:Name="comboBoxLangue" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" >
+                                <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="10,15">Type Code :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3">
+                                <ComboBox x:Name="comboBoxTypeCode" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="10,15"></ComboBox>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabItemCodes"  >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" Margin="10,15" >Nomenclature :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"  >
+                                <ComboBox x:Name="comboBoxNomenclatureCodes" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="NomenclatureId" DisplayMemberPath="Nom"></ComboBox>
+                            </StackPanel>
+                            <DataGrid x:Name="dataGridCode" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" ></DataGrid>
+                        </Grid>
+                    </TabItem>
 
+                </TabControl>
+            </Grid>
+            <Grid x:Name="gridIdentifiant"  Visibility="Hidden" Background="#005005">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                   
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    
+                </Grid.ColumnDefinitions>
+                <TabControl x:Name="tabControlIdentifiant"  Margin="0" BorderThickness="1" BorderBrush="Black"  >
+                    <TabItem Name="tabItemAgenceIdentifiant"  IsSelected="True" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabItemSystem"  >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabItemIdentiifant" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabItemIdentiifants">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </TabItem>
+
+                </TabControl>
 
             </Grid>
             <Grid x:Name="gridMos" Visibility="Hidden">

@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MOS_Management.API.Models;
+using MOS_Management.API.RepositoryInterface;
+using MOS_Management.Wpf.Pages;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -34,8 +36,10 @@ namespace MOS_Management.Wpf
             ConfigureServices(serviceCollection);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
-
+            
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            //ServiceProvider.GetServices<CodePage>();
+            //ServiceProvider.GetServices<NomenclaturePage>();
             mainWindow.Show();
         }
 
@@ -43,8 +47,14 @@ namespace MOS_Management.Wpf
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MOS_Communes_DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MosConnection")));
-
+            services.AddTransient(typeof(App));
             services.AddTransient(typeof(MainWindow));
+           // services.AddTransient(typeof(CodePage));
+            //services.AddTransient(typeof(NomenclaturePage));
+            services.AddScoped<IAgenceRepository, AgenceRepository>();
+            services.AddScoped<INomenclatureRepository, NomenclatureRepository>();
+            services.AddScoped<ICodeRepository, CodeRepository>();
+
         }
     }
 }
