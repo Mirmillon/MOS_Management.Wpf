@@ -53,7 +53,7 @@ namespace MOS_Management.Wpf
             //services.AddTransient(typeof(NomenclaturePage));
             services.AddScoped<IAgenceRepository, AgenceRepository>();
             services.AddScoped<INomenclatureRepository, NomenclatureRepository>();
-            services.AddScoped<ICodeRepository, CodeRepository>();
+          //  services.AddScoped<ICodeRepository, CodeRepository>();
 
         }
     }

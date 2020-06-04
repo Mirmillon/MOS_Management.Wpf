@@ -134,7 +134,7 @@
                                 <Label HorizontalContentAlignment="Right" Margin="10,15" >Agence :</Label>
                             </StackPanel>
                             <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"  >
-                                <ComboBox x:Name="comboBoxAgenceCode_1" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="AgenceId" DisplayMemberPath="Label"></ComboBox>
+                                <ComboBox x:Name="comboBoxAgenceCode_1" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="AgenceId" DisplayMemberPath="Label" SelectionChanged="comboBox_SelectionChanged"></ComboBox>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                                 <Label HorizontalContentAlignment="Right" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="10,15" >Nom :</Label>
@@ -232,6 +232,35 @@
                                 <ComboBox x:Name="comboBoxNomenclatureCodes" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="NomenclatureId" DisplayMemberPath="Nom"></ComboBox>
                             </StackPanel>
                             <DataGrid x:Name="dataGridCode" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" ></DataGrid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="tabItemGestion" Header="Gestion"  >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                                <Label HorizontalContentAlignment="Right" Margin="10,15" >Nomenclature :</Label>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3"  >
+                                <ComboBox x:Name="comboBoxNomenclatureGestion" VerticalAlignment="Bottom"  VerticalContentAlignment="Center" Margin="10,15" IsReadOnly="True" SelectedValuePath="NomenclatureId" DisplayMemberPath="Nom"></ComboBox>
+                            </StackPanel>
+                            <DataGrid x:Name="dataGridGestion" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4" ></DataGrid>
+                            <Button x:Name="buttonGestion" Grid.Row="5" Grid.Column="4" Click="ButtonGestion_Click">Choisir un fichier</Button>
+                            <Button x:Name="buttonInsertion" Grid.Row="5" Grid.Column="2" Click="ButtonInsertion_Click">Insérer</Button>
                         </Grid>
                     </TabItem>
 

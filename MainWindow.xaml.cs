@@ -85,12 +85,20 @@ namespace MOS_Management.Wpf
             {
                 SetControlButtonLateralGauche(u);
             }
+
+            SetControlButtonBas(buttonGestion);
+            buttonGestion.Width = 120;
+            buttonGestion.Height = 60;
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
             agences = agenceRepository.GetAgences_();
+            nomenclatures = nomenclatureRepository.GetNomenclatures_();
             comboBoxAgenceCode_0.ItemsSource = agences;
+            comboBoxAgenceCode_1.ItemsSource = agences;
+            comboBoxNomenclatureCode.ItemsSource = nomenclatures;
+            comboBoxNomenclatureGestion.ItemsSource = nomenclatures;
         }
 
         internal void BtnLateralGauche_Click(object sender, RoutedEventArgs e)
@@ -141,9 +149,43 @@ namespace MOS_Management.Wpf
                             Code code = new Code();
                             code.Valeur = textboxCode.Text.Trim();
                             code.Affichage = textboxAffichage.Text.Trim();
-                            code.Langue = GetAgenceId(comboBoxLangue);
+                            //code.Langue.Code.Valeur = GetAgenceId(comboBoxLangue);
                             code.NomenclatureId = GetNomenclatureId(comboBoxNomenclatureCode);
                             codeRepository.AddCode_(code);
+                            break;
+                    }
+                    break;
+                case TITRE_IDENTIFIANT:
+                    switch (GetTabHeaderSelected(tabControlIdentifiant))
+                    {
+                        case TABITEM_AGENCE:
+                            break;
+                        case TABITEM_SYSTEM:
+                            break;
+                        case TABITEM_IDENTIFIANT:
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string s = labelTitre.Content.ToString();
+            switch (s)
+            {
+                case TITRE_CODE:
+                    switch (GetTabHeaderSelected(tabControlCode))
+                    {
+                        case TABITEM_AGENCE:
+
+                            break;
+                        case TABITEM_NOMENCLATURE:
+                          
+
+                            break;
+                        case TABITEM_CODE:
+                            //dataGridCode.ItemsSource = codeRepository.GetCodes_(GetNomenclatureId(comboBoxNomenclatureCodes));
                             break;
                     }
                     break;
@@ -262,6 +304,65 @@ namespace MOS_Management.Wpf
             return a.CodeId;
         }
 
-      
+        List<Code> codes = new List<Code>();
+        private void ButtonGestion_Click(object sender, RoutedEventArgs e)
+        {
+            if(comboBoxNomenclatureGestion.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vous devez sémectionner une nomenclature");
+            }
+            else
+            {
+                // Configure open file dialog box
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.FileName = "Document"; // Default file name
+                dlg.DefaultExt = ".txt"; // Default file extension
+                dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                //liste
+
+                List<string> listes = new List<String>();
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    // Open document
+                    string filename = dlg.FileName;
+                    string[] array = System.IO.File.ReadAllLines(filename);
+                    // string[] array = new string[] { "frFrance", "fr-CHFrance(Suisse)" };
+                    for (int i = 0; i < array.Length; ++i)
+                    {
+                        String s = array[i];
+                        String[] mots = s.Split(";");
+                        Code code = new Code();
+                        code.Valeur = mots[0].Trim();
+                        code.Affichage = mots[1].Trim();
+                        code.AffichageCourt = mots[2].Trim();
+                        code.AffichageLong = mots[3].Trim();
+                        code.NomenclatureId = GetNomenclatureId(comboBoxNomenclatureGestion);
+                        //code.Langue.Code.Valeur = "fr";
+                        codes.Add(code);
+
+                    }
+
+                    dataGridGestion.ItemsSource = codes;
+
+
+                }
+
+            }
+        }
+
+        private void ButtonInsertion_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(Code c in codes)
+            {
+                codeRepository.AddCode_(c);
+            }
+        }
+
+        
     }
 }
